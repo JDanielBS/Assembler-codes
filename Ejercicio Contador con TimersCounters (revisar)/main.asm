@@ -21,9 +21,9 @@ start:
     clr r21             
 
     ; Configuración del Timer1 en modo CTC
-    ldi r16, high(15624)
+    ldi r16, high(156240)
     sts OCR1AH, r16
-    ldi r16, low(15624)
+    ldi r16, low(156240)
     sts OCR1AL, r16
 
     ldi r16, (1 << WGM12) | (1 << CS12) | (1 << CS10)
