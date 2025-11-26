@@ -12,7 +12,7 @@ void setup() {
 
   // Habilita RXCIE2 (recepción), UDRIE2 (para transmisión) solo cuando quieras usar interrupción de transmisión
   // Habilita RXEN2 y TXEN2 para activar receptor y transmisor
-  UCSR2B = (1 << RXEN2) | (1 << TXEN2) | (1 << RXCIE2);
+  UCSR2B = (1 << RXEN2) | (1 << TXEN2);;
 
   // 8 datos, 1 stop bit, sin paridad, modo asíncrono
   UCSR2C = (1 << UCSZ21) | (1 << UCSZ20); // UCSZ2X: 011 -> 8 bits
