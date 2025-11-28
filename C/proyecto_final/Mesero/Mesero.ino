@@ -114,7 +114,7 @@ void keypadInit() {
   for (byte i = 0; i < 4; i++) {
     pinMode(COL_PINS[i], INPUT_PULLUP);
   }
-  PCICR |= (1 << PCIE0);
+    PCICR |= (1 << PCIE0);
   PCMSK0 |= (1 << PCINT0) | (1 << PCINT1) | (1 << PCINT2) | (1 << PCINT3);
 }
 
@@ -199,13 +199,13 @@ void mostrarMenuEspecifico(char categoria) {
   lcd.setCursor(0, 0);
   lcd.print(titulo);
   lcd.setCursor(0, 1);
-  lcd.print("1 2 3");
+  lcd.print("1 2 3  *=Fin");
   
   Serial.println("--- " + titulo + " ---");
   for(int i = 0; i < 3; i++) {
     Serial.println(menuActual[i]);
   }
-  Serial.println(": Finalizar pedido");
+  Serial.println("*: Finalizar pedido");
 }
 
 String obtenerNombreOpcion(char categoria, char opcion) {
@@ -279,7 +279,7 @@ void procesarSeleccionMesa(char key) {
       mostrarPantallaSeleccionMesa();
     }
   }
-  else if (key == '#') {
+  else if (key == '*') {
     if (inputMesa.length() > 0) {
       inputMesa.remove(inputMesa.length() - 1);
       lcd.setCursor(0, 1);
@@ -309,8 +309,8 @@ void procesarSeleccionCategoria(char key) {
 }
 
 void procesarMenuEspecifico(char key) {
-  // Finalizar pedido con #
-  if (key == '#') {
+  // Finalizar pedido con *
+  if (key == '*') {
     if (pedido.totalItems > 0) {
       finalizarPedido();
     } else {
@@ -351,8 +351,8 @@ void procesarSeleccionCantidad(char key) {
     Serial.print("Cantidad ingresada: ");
     Serial.println(inputCantidad);
   }
-  // Confirmar con #
-  else if (key == '#') {
+  // Confirmar con *
+  else if (key == '*') {
     if (inputCantidad.length() > 0 && inputCantidad.toInt() > 0) {
       // Agregar item al pedido
       pedido.agregarItem(opcionSeleccionada, inputCantidad.toInt());
